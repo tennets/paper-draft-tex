@@ -1,0 +1,29 @@
+TODO.md
+**/*.pdf 
+
+# General (MacOS)
+.DS_Store
+
+# Core latex/pdfLatex auxiliary files
+**/*.aux
+**/*.log
+**/*.out
+**/*.lof
+**/*.lot
+
+# Listings
+**/*.lol
+
+# Bibliography auxiliary files (bibtex/biblatex/biber)
+**/*.bbl
+**/*.blg
+**/*.brf
+
+# Build auxiliary files
+**/*.synctex.gz
+
+# Windows default autosave extension
+**/*.asv
+
+# OSX / *nix default autosave extension
+**/*.m~

@@ -22,16 +22,17 @@ This work is under the [MIT License](LICENSE) and adapts [these tips](https://gi
 |
 |-- src/
 |    |-- abstract.tex
-|    |-- appendix/
 |    |-- bibliography.bib
 |    |-- discussion.tex
 |    |-- introduction.tex
 |    |-- materials-and-methods.tex
 |    |-- matlab/
+|    |      |-- ffsp.m
 |    |-- results.tex
 |
 |-- fig/
-|    |-- appendix/
+|    |-- nice-cat.jpg
+|    |-- sparsity.eps
 ```
 
 ## Typesetting
@@ -130,6 +131,17 @@ For drafting purposes, set
 ```
 
 It helps to track how many times and where you cite a reference.
+You can modify how it looks
+
+```
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{{\footnotesize [%
+		\ifcase #1 Not cited.%
+		\or Cited on page~#2%
+		\else Cited on pages~#2%
+		\fi%
+		]}}
+```
 
 ## Figures
 
@@ -148,4 +160,4 @@ Very useful.
     - `JPEG` for photos, screenshots.
     - `PNG` for anything that does not fall in the previous two categories.
 
-See the Matlab code to format figures.
+See [Matlab code to format figures](template/src/matlab/ffsp.m).

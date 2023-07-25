@@ -4,8 +4,7 @@
 
 It helped me structure my ideas and results to share them effectively with my supervisors before formatting the manuscript according to the journal template.
 
-This work adapts [these tips](https://github.com/Wookai/paper-tips-and-tricks).
-The source code is written in Matlab.
+This work is under the [MIT License](LICENSE) and adapts [these tips](https://github.com/Wookai/paper-tips-and-tricks). The source code is written in Matlab. 
 
 ## Table of Contents
 - [How *template* is structured?](#how-template-is-structured)

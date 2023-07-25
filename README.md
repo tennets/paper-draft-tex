@@ -21,24 +21,18 @@ The source code is written in Matlab.
 .
 |-- main.tex
 |
-|-- src
+|-- src/
 |    |-- abstract.tex
-|    |-- appendix
-|    |       |-- a.tex
-|    |
+|    |-- appendix/
 |    |-- bibliography.bib
 |    |-- discussion.tex
 |    |-- introduction.tex
 |    |-- materials-and-methods.tex
+|    |-- matlab/
 |    |-- results.tex
 |
-|-- fig
-|    |-- appendix
-|    |       |-- more-results.eps
-|    |       |-- even-more-results.png
-|    |
-|    |-- example.jpeg
-|    |-- another-example.pdf
+|-- fig/
+|    |-- appendix/
 ```
 
 ## Typesetting

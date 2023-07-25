@@ -1,0 +1,135 @@
+
+% MAIN is the main file for the draft 
+% Author: Stephan Gahima
+% paper-draft-tex/templates
+
+% ----------------------------------------------------------
+%                        PREAMBLE
+% ----------------------------------------------------------
+%
+%	SETUP
+%
+\documentclass[11pt]{article}
+% UTF-8 encoding (https://en.wikipedia.org/wiki/UTF-8)
+% !TEX encoding = UTF-8 Unicode
+\usepackage[utf8]{inputenc}                		
+% Font encoding (http://www.micropress-inc.com/fonts/encoding/t1.htm)
+\usepackage[T1]{fontenc}                   		  
+\usepackage{lmodern}
+\usepackage[inner=2cm, outer=2cm, top=2cm, bottom=3cm]{geometry}   
+% ----------------------------------------------------------
+% 
+%   PACKAGES
+%
+
+% Framed and shaded regions that can break across pages
+\usepackage{framed} 
+% Mathematical miscellaneous
+\usepackage{amsmath}
+% Mathematical symbols
+\usepackage{amssymb}
+% Accents. Like \hat{x}, \tilde{x} etc
+\usepackage{accents}
+% Mathematical notation
+\usepackage{fixmath}
+% Table formatting
+\usepackage{booktabs}
+% Tables, and figures placement
+\usepackage{float}
+% Number formatting
+\usepackage{siunitx}
+\sisetup{
+    round-mode = places,
+	round-precision = 3
+}
+% Reference management
+\usepackage{cite} 
+% Cross-references, URLS and more with back reference
+\usepackage[backref=page]{hyperref}               
+\hypersetup{
+	colorlinks = false,         % Disable coloured links and anchors 
+	pdfauthor = Stephan Gahima,	% Document author, fill in yours
+	pdfstartpage = 1,           % PDF opens at page 1
+}
+% Modify how Backref appears
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{{\footnotesize [%
+		\ifcase #1 Not cited.%
+		\or Cited on page~#2%
+		\else Cited on pages~#2%
+		\fi%
+		]}}
+	
+% Figures
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{caption}                    
+\usepackage[format=hang]{subcaption}    
+\newcommand{\subfigsz}{0.4}  
+
+% Include source code
+%\usepackage{listings}
+% Matlab (http://www.ctan.org/pkg/matlab-prettifier)
+\usepackage{matlab-prettifier} 
+
+% ----------------------------------------------------------
+%
+%   COSTUM COMMANDS
+%
+
+% Keywords command
+\providecommand{\keywords}[1]
+{
+	\small	
+	\textbf{\textit{Keywords --- }} #1
+}
+
+% Mathematics
+% Vectors
+\renewcommand{\vec}[1]{\mathbold{#1}} 
+% Matrices
+\newcommand{\mat}[1]{\mathbold{#1}}  
+
+% Typesetting
+\newcommand{\refalg}[1]{Algorithm~\ref{#1}}
+%\newcommand{\refapp}[1]{Appendix~\ref{#1}}
+\newcommand{\refeq}[1]{Equation~\ref{#1}}
+\newcommand{\reffig}[1]{Figure~\ref{#1}}
+\newcommand{\refsec}[1]{Section~\ref{#1}}
+\newcommand{\reftab}[1]{Table~\ref{#1}}
+
+% ----------------------------------------------------------
+%                       END OF PREAMBLE
+% ----------------------------------------------------------
+
+
+% Capitalize your title at https://capitalizemytitle.com/
+\title{A Template for Your Manuscript Draft} % APA style
+
+\begin{document}
+	
+	\maketitle
+	
+	\input{src/abstract}
+	
+	% Add your keywords here
+	\keywords{LaTeX, Template, Paper, Drafting}
+	
+	\input{src/introduction}
+	
+	\input{src/materials-and-methods}
+
+	\input{src/results}
+
+	\input{src/discussion}
+
+	\bibliographystyle{plain}
+	\bibliography{src/bibliography}
+	
+	\clearpage
+	
+	\listoffigures
+	\listoftables
+	\lstlistoflistings
+	
+\end{document}

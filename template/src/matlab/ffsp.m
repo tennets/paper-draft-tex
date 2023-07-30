@@ -45,16 +45,16 @@ function ffsp(varargin)
 %
 %   NOTE
 %   To arrange figures for a LaTeX document using FFSP, use the SUBFIGURE 
-%   within the FIGURE environment to create an N-by-2 grid format.
-%   FFSP assumes N range from 1 to 4. If that is not the case, the results 
-%   are not guaranteed.
+%   within the FIGURE environment to create an N-by-M grid format.
+%   FFSP assumes N, and M range from 1 to 4. If that is not the case, the 
+%   results are not guaranteed.
 %   We recommend using the LaTeX template at https://github.com/tennets/paper-draft-tex. 
 %
-% ffsp.m is the source code to produce high-quality LaTex-ready figures.
-% Author: Stephan Gahima
+% ffsp.m
+% produce high-quality LaTex-ready figures
 % paper-draft-tex/src/matlab
 %
-% Initial idea inspired by https://github.com/altmany/export_fig.
+% Inspired by https://github.com/altmany/export_fig and https://github.com/plotly/plotly_matlab.
 
 % Software information
 CURRENT_VERSION = 0.1;

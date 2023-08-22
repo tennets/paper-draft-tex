@@ -58,19 +58,42 @@ AVAILABLE_FORMATS = ["-eps", "-pdf"];
 disp(['ffsp version ', num2str(CURRENT_VERSION, VERSION_FORMAT), ...
         ' (', RELEASE_DATE, ')'])
 
-p = parse_args();
-
 % Unpack 
-f_handle  = p.Results.f;
-ax_handle = p.Results.ax;
-filename  = p.Results.filename;
-% format    = p.format;
+filename = parse_args().Results.filename;
+format   = parse_args().Results.format;
 
 check_filename();
  
 % MAIN ---
 
+% Work in centimeters
+set(ax, 'Units', 'centimeters'); 
+set(f, 'PaperUnits', 'centimeters', 'Units', 'centimeters');
+
+% A4 size is 21 cm x 29,7 cm
+
+ax_pos = get(ax, 'Position');
+inset  = get(ax, 'TightInset');
+
+% left   = ax_pos(1)-inset(1);
+% bottom = ax_pos(2)-inset(2);
+width  = sum(ax_pos([1, 3]))+inset(3);
+height = sum(ax_pos([2, 4]))+inset(4);
+
+% Ref. https://undocumentedmatlab.com/articles/axes-looseinset-property/
+set(ax, 'LooseInset', [0, 0, 0, 0]); % inset);
+
+set(f,                                ...
+    'PaperPositionMode', 'manual',    ... 
+    'PaperSize', [width, height],     ...
+    'PaperPosition', [0, 0,           ...
+                      width, height], ...
+    'Renderer', 'painters');
+
+% Fix linestiles for EPS images
+
 % SAVE ---
+print(f, strcat("-d", format(2:end)), filename);
 
 % LOCAL FUNCTIONS ---------------------------------------------------------
 

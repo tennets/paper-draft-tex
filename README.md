@@ -1,10 +1,10 @@
 # **paper-draft-tex**
 
-*paper-draft-tex* showcases how you might want to structure the draft of your scientific paper in LaTex.
+*paper-draft-tex* showcases how you might want to structure the draft of your scientific paper in LaTex. It also provide a useful (basic) function to format Matlab-generated figures to Latex-ready high-quality ones.
 
 It helped me structure my ideas and results to share them effectively with my supervisors before formatting the manuscript according to the journal template.
 
-This work is under the [MIT License](LICENSE) and adapts [these tips](https://github.com/Wookai/paper-tips-and-tricks). The source code is written in Matlab. 
+This work is under the [MIT License](LICENSE) and adapts [these tips](https://github.com/Wookai/paper-tips-and-tricks). The [function](./matlab/ffsp.m) to format figure is written in Matlab. 
 
 ## Table of Contents
 - [How *template* is structured?](#how-template-is-structured)
@@ -13,7 +13,7 @@ This work is under the [MIT License](LICENSE) and adapts [these tips](https://gi
 - [Bibliography](#bibliography)
 - [Figures](#figures)
 
-## How *template* is structured?
+## How *latex-template* is structured?
 
 
 ```bash
@@ -26,13 +26,12 @@ This work is under the [MIT License](LICENSE) and adapts [these tips](https://gi
 |    |-- discussion.tex
 |    |-- introduction.tex
 |    |-- materials-and-methods.tex
-|    |-- matlab/
-|    |      |-- ffsp.m
 |    |-- results.tex
 |
 |-- fig/
 |    |-- nice-cat.jpg
-|    |-- sparsity.eps
+|    |-- spy.pdf
+|    |-- gscatter.eps
 ```
 
 ## Typesetting
@@ -160,4 +159,4 @@ Very useful.
     - `JPEG` for photos, screenshots.
     - `PNG` for anything that does not fall in the previous two categories.
 
-See [Matlab code to format figures](template/src/matlab/ffsp.m).
+There exist many tools to format high-quality figures, like [`export_fig`](https://github.com/altmany/export_fig) or [`plotly_matlab`](https://github.com/plotly/plotly_matlab). However, if you are interested, I have written a basic version of such tools that achieve similar results. Check the [documentation](./matlab/README.md) for [`ffsp`](./matlab/ffsp.m). I have used it for the Matlab-generated figures showcased in [this template](./latex-template/main.pdf). 

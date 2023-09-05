@@ -93,7 +93,7 @@ set(f,                                ...
 % Fix linestiles for EPS images
 
 % SAVE ---
-print(f, strcat("-d", format(2:end)), filename);
+print(f, filename, strcat("-d", format));
 
 % LOCAL FUNCTIONS ---------------------------------------------------------
 

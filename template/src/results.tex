@@ -29,7 +29,7 @@
 	% https://latex-tutorial.com/subfigure-latex/ to know more about the SUBFIGURE environment
 	\begin{figure}[H]
 		\centering
-		\begin{subfigure}{\subfigsz\textwidth}
+		\begin{subfigure}[b]{\subfigsz\textwidth} 
 			% Add reference to the code that produced the figure
 			\includegraphics{fig/spy.pdf}
 			\subcaption{
@@ -37,8 +37,8 @@
 				\label{fig:sparsity}
 			}
 		\end{subfigure}
-		\
-		\begin{subfigure}{\subfigsz\textwidth}
+		\hfil
+		\begin{subfigure}[b]{\subfigsz\textwidth}
 			% Add reference to the code that produced the figure
 			\includegraphics{fig/gscatter.eps}
 			\subcaption{

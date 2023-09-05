@@ -5,6 +5,30 @@
 \section{Discussion \label{sec:discussion}}
 	\refsec{sec:introduction} showed how citation works.
 	\ref{sec:materials-and-methods} briefly touched on mathematical notation, and \refsec{sec:results} presented how to format tables and figures.
-	In particular, to have nice-looking figures, we recommend using this Matlab function \texttt{ffsp}.
-	\refalg{alg:figure-formatting} describes the \texttt{ffsp} procedure.
+	In \reftab{tab:alien-visits}, you can see the past and expected visits of Aliens to Earth. 
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{llcS}
+			\toprule
+			Date of Visit & Travel Duration & Landing Location & {Distance Traveled (Km)} \\
+			\midrule
+			2022-03-15 & 1 year & Area 51, Nevada, USA & \num{450000} \\
+			2023-01-08 & 6 months & Giza Pyramid Complex, Egypt & \num{250000} \\
+			2023-06-20 & 2 years & The Great Wall of China & \num{802349} \\
+			2024-02-12 & 3 months & Machu Picchu, Peru & \num{1500490} \\
+			2024-09-30 & 5 years & Mount Kilimanjaro, Tanzania & \num{1200000} \\
+			2025-05-18 & 1.5 years & Stonehenge, United Kingdom & \num{600000} \\
+			2026-11-02 & 8 months & Mount Everest, Nepal & \num{300000} \\
+			2027-08-10 & 4 years & Ayers Rock (Uluru), Australia & \num{1000000} \\
+			2028-12-24 & 2.5 years & Taj Mahal, India & \num{700422} \\
+			2029-09-03 & 3.5 years & Christ the Redeemer, Brazil & \num{900000} \\
+			\bottomrule
+		\end{tabular}
+		\caption{\href{https://chat.openai.com/}{ChatGPT} generated data about past and expected Alien visits to Earth. \label{tab:alien-visits}}
+	\end{table}
+	
+	For a good-looking document, there are many sophisticated and comprehensive tools to format Matlab-generated figures, like \href{https://www.mathworks.com/matlabcentral/fileexchange/23629-export_fig?s_tid=ta_fx_results}{\texttt{export\_fig}} and  \href{https://www.mathworks.com/matlabcentral/fileexchange/42202-plotly-online-matlab-graphing}{\texttt{plotly\_matlab}}.
+	However, here we describe a basic version of such software called \verb*|ffsp|. 
+
 	

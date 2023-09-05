@@ -1,47 +1,74 @@
-function ffsp(f, ax, varargin)
-%FFSP formats Matlab-generated figures to produce high-quality LaTeX-ready
-%figures.
+function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
+% FFSP formats Matlab-generated figures to produce high-quality LaTeX-ready
+% figures.
 %
-%   FFSP(f, ax) format the figure using the default settings. It saves the
-%   figure as FORMATTED_FIGURE.pdf.
+%   USAGE:
+%   FFSP(f, ax, LATEXW, LATEXH, NROWS, NCOLS) saves the figure using default settings as FORMATTED_FIGURE.pdf.
 %
-%   FFSP(..., FILENAME) format the figure and save it as FILENAME.pdf.
+%   FFSP(..., FILENAME) saves the figure using the default extension as FILENAME.pdf.
 %
-%   FFSP(..., FORMAT) format the figure to have FORMAT extension. It saves
-%   the figure as FORMATTED_FIGURE.FORMAT. 
+%   FFSP(..., FORMAT) saves the figure using the default filename as FORMATTED_FIGURE.FORMAT. 
 %
-%   FFSP(..., FILENAME, FORMAT) format the figure to have FORMAT extension,
-%   and saves it as FORMATTED_FIGURE.FORMAT. 
+%   FFSP(..., FILENAME, FORMAT) saves the figure as FILENAME.FORMAT.
 %
 %   INPUTS:
-%   F                    To be formatted figure handle. See GCF (built-in).
+%   F                    The figure handle of the target graphic object.
+%                        See GCF (built-in).
 %
-%   AX                   To be formatted axes handle. See GCA (built-in).
+%   AX                   The axes handle of the target graphic object.
+%                        See GCA (built-in).
 %
-%   FILENAME             String with the desired output filename (full or 
-%                        relative path) for the figure. If no path is 
-%                        specified, FFSP saves as FILENAME in the 
-%                        current folder. FFSP uses the default name 
-%                        'formatted_figure' if FILENAME is empty.
+%   LATEXW               The \textwidth (in cm) of the target LaTex 
+%                        document.
+%
+%   LATEXH               The \textheigh (in cm) of the target LaTex
+%                        document.
+%
+%                        The easiest way to get those values is to print
+%                        them on your LaTex document. To do so, write 
+%                        \printinunitsof{cm}\prntlen{\textwidth} and
+%                        \printinunitsof{cm}\prntlen{\textheight} to print 
+%                        LATEXW and LATEXH respectively. 
+%
+%   NROWS                Number of grid rows in the layout. 
+%
+%   NCOLS                Number of grid columns in the layout.
+%
+%                        FFSP assumes that the target figure is arranged in
+%                        the LaTex document using the SUBFIGURE environment
+%                        within the FIGURE environment. In particular, FFSP
+%                        assumes an NROW-by-NCOLS grid layout of SUBFIGURES.  
+%
+%   FILENAME             String with the desired output filename. FFSP uses
+%                        the default name 'formatted_figure' if 
+%                        FILENAME is empty.
 %
 %   FORMAT               String(s) containing the output file extension(s). 
 %                        Specify one (or more) of the following options:
-%
 %                        'eps'   Encapsulated PostScript (EPS) format.
 %                        'pdf'   Portable Document Format (PDF).
 %
-%   NOTE
-%   To arrange figures for a LaTeX document using FFSP, use the SUBFIGURE 
-%   within the FIGURE environment to create an N-by-M grid format.
-%   FFSP assumes N, and M range from 1 to 4. If that is not the case, the 
-%   results are not guaranteed.
-%   We recommend using the LaTeX template at https://github.com/tennets/paper-draft-tex. 
+%   NOTE:
+%   If you format figures for a LaTeX document using FFSP, use the 
+%   SUBFIGURE environment within the FIGURE environment to create an
+%   NROWS-by-NCOLS grid layout. Check the recommended LaTeX template at
+%   https://github.com/tennets/paper-draft-tex for more details about the 
+%   inner workings of FFSP, together with some examples.
+%
+%   LIMITATIONS
+%   - FFSP assumes NROWS and NCOLS range from 1 to 4.
+%   - FFSP save the figure in the directory where FFSP runs.
+%   - FFSP only supports PDF and EPS formats.
 %
 % ffsp.m
-% produce high-quality LaTex-ready figures
-% paper-draft-tex/src/matlab
+% Produce Matlab-generated high-quality LaTex-ready figures
+% Stephan Gahima/LaTex/Matlab
 %
-% Inspired by https://github.com/altmany/export_fig and https://github.com/plotly/plotly_matlab.
+% Inspired by https://github.com/altmany/export_fig, 
+% https://github.com/plotly/plotly_matlab, aesthetics and desire to write a 
+% (simpler and basic) version of what's out there.
+%
+% Copyright (c) 2023 Stephan Gahima.
 
 % DO NOT MODIFY -----------------------------------------------------------
 % Software information
@@ -57,7 +84,7 @@ AVAILABLE_FORMATS = ["eps", "pdf"];
 
 disp(['ffsp version ', num2str(CURRENT_VERSION, VERSION_FORMAT), ...
         ' (', RELEASE_DATE, ')'])
-
+s
 % Unpack 
 filename = parse_args().Results.filename;
 format   = parse_args().Results.format;
@@ -70,18 +97,14 @@ check_filename();
 set(ax, 'Units', 'centimeters'); 
 set(f, 'PaperUnits', 'centimeters', 'Units', 'centimeters');
 
-% A4 size is 21 cm x 29,7 cm
-
 ax_pos = get(ax, 'Position');
 inset  = get(ax, 'TightInset');
 
-% left   = ax_pos(1)-inset(1);
-% bottom = ax_pos(2)-inset(2);
 width  = sum(ax_pos([1, 3]))+inset(3);
 height = sum(ax_pos([2, 4]))+inset(4);
 
 % Ref. https://undocumentedmatlab.com/articles/axes-looseinset-property/
-set(ax, 'LooseInset', [0, 0, 0, 0]); % inset);
+set(ax, 'LooseInset', [0, 0, 0, 0]); % inset); % Not sure which yields the best results
 
 set(f,                                ...
     'PaperPositionMode', 'manual',    ... 

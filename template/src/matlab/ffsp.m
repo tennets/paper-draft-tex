@@ -74,9 +74,9 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 %
 % Copyright (c) 2023 Stephan Gahima.
 
-% DO NOT MODIFY -----------------------------------------------------------
+% ------------------------ DO NOT EDIT ------------------------------------
 % Software information
-CURRENT_VERSION = 0.1;
+CURRENT_VERSION = 0.7;
 VERSION_FORMAT  = "%.1f";
 % Use CHAR to display nicely on the command window
 RELEASE_DATE    = char(datetime("today", "Format", "d-MM-y"));
@@ -88,10 +88,14 @@ AVAILABLE_FORMATS = ["eps", "pdf"];
 
 disp(['ffsp version ', num2str(CURRENT_VERSION, VERSION_FORMAT), ...
         ' (', RELEASE_DATE, ')'])
-s
+
 % Unpack 
 filename = parse_args().Results.filename;
 format   = parse_args().Results.format;
+% LATEXW   = parse_args().Results.LATEXW;
+% LATEXH   = parse_args().Results.LATEXH;
+% NROWS    = parse_args().Results.NROWS;
+% NCOLS    = parse_args().Results.NCOLS;
 
 check_filename();
  
@@ -104,8 +108,44 @@ set(f, 'PaperUnits', 'centimeters', 'Units', 'centimeters');
 ax_pos = get(ax, 'Position');
 inset  = get(ax, 'TightInset');
 
-width  = sum(ax_pos([1, 3]))+inset(3);
-height = sum(ax_pos([2, 4]))+inset(4);
+% Original width and height
+ow = sum(ax_pos([1, 3]))+inset(3);
+oh = sum(ax_pos([2, 4]))+inset(4);
+
+% Based on NROWS and NCOLS, scale the original width and height.
+% Assume that the NROWS-by-NCOLS figures must fit on a LaTex page.
+
+subh = subfig_scale_factor(NROWS);
+subw = subfig_scale_factor(NCOLS);
+   
+if NROWS > NCOLS
+
+    height = LATEXW * subh;
+    scale  = oh / height;
+    width  = ow / scale;
+    % #TODO Make sure we fit in LATEXW 
+
+elseif NROWS < NCOLS
+
+    width  = LATEXH * subw;
+    scale  = ow / width;
+    height = oh / scale;
+
+    % #TODO Make sure we fit in LATEXH
+
+else 
+
+    % #TODO Be more clever
+    width  = LATEXH * subw;
+    scale  = ow / width;
+    height = oh / scale;
+
+    % #TODO Make sure we fit in LATEXH and LATEXW
+
+end
+
+% Set font family and font size
+
 
 % Ref. https://undocumentedmatlab.com/articles/axes-looseinset-property/
 set(ax, 'LooseInset', [0, 0, 0, 0]); % inset); % Not sure which yields the best results
@@ -131,6 +171,7 @@ function p = parse_args()
     check_f  = @(x) isgraphics(f, 'figure') && isa(f, 'matlab.ui.Figure');
     check_ax = @(x) isgraphics(ax, 'axes')  && isa(ax, 'matlab.graphics.axis.Axes');
     check_op = @(x) isstring(x) | ischar(x);
+    % #TODO add checks for LATEXW, LATEXH, NROWS, and NCOLS
 
     % Create parsing object
     p = inputParser;
@@ -151,7 +192,7 @@ end
 
 % -------------------------------------------------------------------------
 
-function check_filename(INVALID_CHARACTERS)
+function check_filename()
 %CHECK_FILENAME ensures filename is valid on different OS.
 
 % Ref. https://stackoverflow.com/questions/4814040/allowed-characters-in-filename
@@ -173,6 +214,24 @@ for i = 1:length(INVALID_CHARACTERS)
         error('FFSP:CheckFilename', [c, ' is an invalid character for ' ...
             'filename on your OS.']);
     end
+end
+
+end
+
+% -------------------------------------------------------------------------
+
+function subl = subfig_scale_factor(N)
+
+if N == 1
+    subl = .9;
+elseif N == 2
+    subl = .425;
+elseif N == 3
+    subl = .285;
+elseif N == 4
+    subl = .2125;
+else
+    % #TODO Decide what to do for large values
 end
 
 end

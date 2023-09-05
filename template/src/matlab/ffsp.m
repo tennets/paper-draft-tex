@@ -27,8 +27,8 @@ function ffsp(f, ax, varargin)
 %   FORMAT               String(s) containing the output file extension(s). 
 %                        Specify one (or more) of the following options:
 %
-%                        '-eps'   Encapsulated PostScript (EPS) format.
-%                        '-pdf'   Portable Document Format (PDF).
+%                        'eps'   Encapsulated PostScript (EPS) format.
+%                        'pdf'   Portable Document Format (PDF).
 %
 %   NOTE
 %   To arrange figures for a LaTeX document using FFSP, use the SUBFIGURE 
@@ -51,8 +51,8 @@ VERSION_FORMAT  = "%.1f";
 RELEASE_DATE    = char(datetime("today", "Format", "d-MM-y"));
 % Default values
 DEFAULT_FILENAME  = "formatted_figure";
-DEFAULT_FORMAT    = "-pdf";
-AVAILABLE_FORMATS = ["-eps", "-pdf"];
+DEFAULT_FORMAT    = "pdf";
+AVAILABLE_FORMATS = ["eps", "pdf"];
 % -------------------------------------------------------------------------
 
 disp(['ffsp version ', num2str(CURRENT_VERSION, VERSION_FORMAT), ...

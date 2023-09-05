@@ -1,13 +1,16 @@
 function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
-% FFSP formats Matlab-generated figures to produce high-quality LaTeX-ready
+% FFSP formats Matlab-generated figures to be high-quality LaTeX-ready 
 % figures.
 %
 %   USAGE:
-%   FFSP(f, ax, LATEXW, LATEXH, NROWS, NCOLS) saves the figure using default settings as FORMATTED_FIGURE.pdf.
+%   FFSP(f, ax, LATEXW, LATEXH, NROWS, NCOLS) saves the figure using 
+%   default settings as FORMATTED_FIGURE.pdf.
 %
-%   FFSP(..., FILENAME) saves the figure using the default extension as FILENAME.pdf.
+%   FFSP(..., FILENAME) saves the figure using the default extension as 
+%   FILENAME.pdf.
 %
-%   FFSP(..., FORMAT) saves the figure using the default filename as FORMATTED_FIGURE.FORMAT. 
+%   FFSP(..., FORMAT) saves the figure using the default filename as 
+%   FORMATTED_FIGURE.FORMAT. 
 %
 %   FFSP(..., FILENAME, FORMAT) saves the figure as FILENAME.FORMAT.
 %
@@ -27,33 +30,34 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 %                        The easiest way to get those values is to print
 %                        them on your LaTex document. To do so, write 
 %                        \printinunitsof{cm}\prntlen{\textwidth} and
-%                        \printinunitsof{cm}\prntlen{\textheight} to print 
-%                        LATEXW and LATEXH respectively. 
+%                        \printinunitsof{cm}\prntlen{\textheight} to 
+%                        print LATEXW and LATEXH respectively. 
 %
 %   NROWS                Number of grid rows in the layout. 
 %
 %   NCOLS                Number of grid columns in the layout.
 %
-%                        FFSP assumes that the target figure is arranged in
-%                        the LaTex document using the SUBFIGURE environment
-%                        within the FIGURE environment. In particular, FFSP
-%                        assumes an NROW-by-NCOLS grid layout of SUBFIGURES.  
+%                        FFSP assumes that the target figure is arranged
+%                        in the LaTex document using the SUBFIGURE 
+%                        environment within the FIGURE environment. In 
+%                        particular, FFSP assumes an NROW-by-NCOLS grid 
+%                        layout of SUBFIGURES.  
 %
-%   FILENAME             String with the desired output filename. FFSP uses
-%                        the default name 'formatted_figure' if 
+%   FILENAME             String with the desired output filename. FFSP 
+%                        uses the default name "formatted_figure" if 
 %                        FILENAME is empty.
 %
-%   FORMAT               String(s) containing the output file extension(s). 
-%                        Specify one (or more) of the following options:
+%   FORMAT               String containing the output file extension. 
+%                        Specify one of the following options:
 %                        'eps'   Encapsulated PostScript (EPS) format.
 %                        'pdf'   Portable Document Format (PDF).
 %
-%   NOTE:
+%   NOTE
 %   If you format figures for a LaTeX document using FFSP, use the 
 %   SUBFIGURE environment within the FIGURE environment to create an
 %   NROWS-by-NCOLS grid layout. Check the recommended LaTeX template at
-%   https://github.com/tennets/paper-draft-tex for more details about the 
-%   inner workings of FFSP, together with some examples.
+%   https://github.com/tennets/paper-draft-tex for more details about 
+%   the inner workings of FFSP, together with some examples.
 %
 %   LIMITATIONS
 %   - FFSP assumes NROWS and NCOLS range from 1 to 4.
@@ -65,8 +69,8 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 % Stephan Gahima/LaTex/Matlab
 %
 % Inspired by https://github.com/altmany/export_fig, 
-% https://github.com/plotly/plotly_matlab, aesthetics and desire to write a 
-% (simpler and basic) version of what's out there.
+% https://github.com/plotly/plotly_matlab, aesthetics and desire to 
+% write a (simpler and basic) version of what's out there.
 %
 % Copyright (c) 2023 Stephan Gahima.
 
@@ -113,7 +117,7 @@ set(f,                                ...
                       width, height], ...
     'Renderer', 'painters');
 
-% Fix linestiles for EPS images
+% #TODO Fix linestiles for EPS images
 
 % SAVE ---
 print(f, filename, strcat("-d", format));

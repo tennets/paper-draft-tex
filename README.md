@@ -4,7 +4,7 @@
 
 It helped me structure my ideas and results to share them effectively with my supervisors before formatting the manuscript according to the journal template.
 
-This work is under the [MIT License](LICENSE) and adapts [these tips](https://github.com/Wookai/paper-tips-and-tricks). The [function](./matlab/ffsp.m) to format figure is written in Matlab. 
+The source codes in [latex-template](./latex-template) are edited with [TeXstudio](https://www.texstudio.org/), which compiles them to produce [main.pdf](./latex-template/main.pdf). The [function](./matlab/ffsp.m) to format the figures is written in Matlab. This work is under the [MIT License](LICENSE) and adapts [these tips](https://github.com/Wookai/paper-tips-and-tricks). 
 
 ## Table of Contents
 - [How *template* is structured?](#how-template-is-structured)

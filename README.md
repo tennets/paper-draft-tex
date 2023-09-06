@@ -34,6 +34,10 @@ This work is under the [MIT License](LICENSE) and adapts [these tips](https://gi
 |    |-- gscatter.eps
 ```
 
+The idea is to keep this separated for a flexible and efficient management of the drafting process. 
+If one has a lot of figures, the best strategy is to create an ad-hoc folder in `fig`.
+For instance, a `fig/results`  folder for the figures in the Results section.
+
 ## Typesetting
 
 - One sentence per line in your source file. For example

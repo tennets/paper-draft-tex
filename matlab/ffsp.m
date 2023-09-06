@@ -59,8 +59,10 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 % 
 %   FORMAT               String with the output figure extension. 
 %                        Specify one of the following options:
-%                        'eps'   Encapsulated PostScript (EPS) format.
-%                        'pdf'   Portable Document Format (PDF).
+%
+%                        'eps'       Encapsulated PostScript (EPS) format.
+%                        'pdf'       Portable Document Format (PDF).
+%
 %                        FFSP uses the default extension "pdf" if FORMAT is
 %                        empty.
 % 

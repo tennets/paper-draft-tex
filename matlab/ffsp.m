@@ -24,26 +24,26 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 %   Required Arguments
 %   -----------------------------------------------------------------------
 %   F                    The figure handle of the target graphic object.
-%                        See GCF (built-in).
+%                        See GCF (built-in)
 % 
 %   AX                   The axes handle of the target graphic object. See 
-%                        GCA (built-in).
+%                        GCA (built-in)
 % 
-%   LATEXW               The \textwidth (in cm) of the target LaTex 
-%                        document.
+%   LATEXW               The text width (in cm) of the target LaTex 
+%                        document
 % 
-%   LATEXH               The \textheigh (in cm) of the target LaTex
-%                        document.
+%   LATEXH               The text heigh (in cm) of the target LaTex
+%                        document
 % 
 %                        The easiest way to get those values is to print
 %                        them on your LaTex document. To do so, write 
 %                        \printinunitsof{cm}\prntlen{\textwidth} and
 %                        \printinunitsof{cm}\prntlen{\textheight} to print
-%                        LATEXW and LATEXH respectively. 
+%                        LATEXW and LATEXH respectively 
 % 
-%   NROWS                Number of grid rows in the layout. 
+%   NROWS                Number of grid rows in the layout (must be < 5)
 % 
-%   NCOLS                Number of grid columns in the layout.
+%   NCOLS                Number of grid columns in the layout (must be < 5)
 % 
 %                        FFSP assumes that the target figure is arranged
 %                        in the LaTex document using the SUBFIGURE 
@@ -53,18 +53,19 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 % 
 %   Name-Value Arguments
 %   -----------------------------------------------------------------------
-%   FILENAME             String with the output figure filename. FFSP 
-%                        uses the default name "formatted_figure" if 
-%                        FILENAME is empty.  
+%   FILENAME         String with the output figure filename. 
 % 
-%   FORMAT               String with the output figure extension. 
-%                        Specify one of the following options:
+%                    FFSP uses the default name "formatted_figure" if 
+%                    FILENAME is an empty string or not specified.  
+% 
+%   FORMAT           String with the output figure extension. Specify one 
+%                    of the following options:
+%                    'eps'       Encapsulated PostScript (EPS) format.
+%                    'pdf'       Portable Document Format (PDF).
 %
-%                        'eps'       Encapsulated PostScript (EPS) format.
-%                        'pdf'       Portable Document Format (PDF).
-%
-%                        FFSP uses the default extension "pdf" if FORMAT is
-%                        empty.
+%                    FFSP throws an error if FORMAT is specified as an 
+%                    empty string. Otherwise, if not specified FFSP used 
+%                    the "pdf" extension by default.
 % 
 %   NOTE
 %   If you format figures for a LaTeX document using FFSP, use the 
@@ -75,7 +76,7 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 % 
 %   LIMITATIONS
 %   - FFSP assumes NROWS and NCOLS range from 1 to 4.
-%   - FFSP save the figure in the directory where FFSP runs.
+%   - FFSP saves the figure in the directory where it runs.
 %   - FFSP only supports PDF and EPS formats.
 %   - FFSP returns a grey scale figure when EPS is specified.
 % 
@@ -91,14 +92,29 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 
 % ------------------------ DO NOT EDIT ------------------------------------
 % Software information
-CURRENT_VERSION = 0.9;
+CURRENT_VERSION = 1.0;
 VERSION_FORMAT  = "%.1f";
 % Use CHAR to display nicely on the command window
 RELEASE_DATE    = char(datetime("today", "Format", "d-MM-y"));
 % -------------------------------------------------------------------------
 
-disp(['ffsp version ', num2str(CURRENT_VERSION, VERSION_FORMAT), ...
-        ' (', RELEASE_DATE, ')'])
+% ----------------- DEFAULT VALUES AND SUPPORTED OPTS ---------------------
+DEFAULT_FILENAME  = "formatted_figure";
+DEFAULT_FORMAT    = "pdf";
+AVAILABLE_FORMATS = ["eps", "pdf"];
+ONEFIG   = .9;
+TWOFIG   = .45;
+THREEFIG = .3;
+FOURFIG  = .225;
+% -------------------------------------------------------------------------
+
+disp('Copy-paste these four lines in the preamble of your LaTex document ')
+disp(['\newcommand{\onefig}{', num2str(ONEFIG), '}'])
+disp(['\newcommand{\twofig}{', num2str(TWOFIG), '}'])
+disp(['\newcommand{\threefig}{', num2str(THREEFIG), '}'])
+disp(['\newcommand{\fourfig}{', num2str(FOURFIG), '}'])
+disp('---')
+tic;
 
 args = parseArgs();
 
@@ -180,7 +196,20 @@ set(f,                                ...
     "Renderer", "painters");
 
 % SAVE ---
+% Catch empty string provided by the user
+if strlength(filename) == 0
+    filename = DEFAULT_FILENAME;
+elseif strlength(format) == 0
+    format = DEFAULT_FORMAT;
+end
 print(f, filename, strcat("-d", format));
+
+time = toc;
+disp(['Executed in ', num2str(time), ' sec.'])
+disp('---')
+disp(' ')
+disp(['ffsp version ', num2str(CURRENT_VERSION, VERSION_FORMAT), ...
+        ' (', RELEASE_DATE, ')'])
 
 % LOCAL FUNCTIONS ---------------------------------------------------------
 
@@ -191,11 +220,6 @@ function p = parseArgs()
     p = inputParser;
     % Set function name
     p.FunctionName = "ffsp";
-
-    % Default values ---
-    DEFAULT_FILENAME  = "formatted_figure";
-    DEFAULT_FORMAT    = "pdf";
-    AVAILABLE_FORMATS = ["eps", "pdf"];
 
     % Helper functions ---
     check_figure = @(x) isgraphics(f, "figure") && ...
@@ -269,13 +293,13 @@ function subl = subfig_scale_factor(N)
 %   template you find at https://github.com/tennets/paper-draft-tex.
 
     if N == 1
-        subl = .9;
+        subl = ONEFIG;
     elseif N == 2
-        subl = .45;
+        subl = TWOFIG;
     elseif N == 3
-        subl = .3;
+        subl = THREEFIG;
     else 
-        subl = .225; 
+        subl = FOURFIG; 
     end
 
 end

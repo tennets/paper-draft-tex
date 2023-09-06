@@ -22,6 +22,8 @@ This work is under the [MIT License](LICENSE) and adapts [these tips](https://gi
 |
 |-- src/
 |    |-- abstract.tex
+|    |-- appendix/
+|    |       |-- ffsp.tex
 |    |-- bibliography.bib
 |    |-- discussion.tex
 |    |-- introduction.tex
@@ -30,8 +32,9 @@ This work is under the [MIT License](LICENSE) and adapts [these tips](https://gi
 |
 |-- fig/
 |    |-- nice-cat.jpg
-|    |-- spy.pdf
 |    |-- gscatter.eps
+|    |-- tansin.pdf
+|    |-- spy.pdf
 ```
 
 The idea is to keep this separated for a flexible and efficient management of the drafting process. 

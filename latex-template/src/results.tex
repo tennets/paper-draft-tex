@@ -1,6 +1,6 @@
 % results.tex
-% contains the text for the Results section of the manuscript
-% paper-draft-tex/templates/src
+% Results section of the manuscript
+% Stephan Gahima/paper-draft-tex
 
 \section{Results \label{sec:results}}
 	
@@ -23,8 +23,8 @@
 	To do so, add the \verb*|layourts| package (here is already included!) and \verb*|\printinunitsof{cm}\prntlen{\textwidth}| (or \verb*|\printinunitsof{cm}\prntlen{\textheight}|) gives \verb*|\textwidth| = \printinunitsof{cm}\prntlen{\textwidth} (or \verb*|\textheight| = \printinunitsof{cm}\prntlen{\textheight}).
 	% For inches, use \printinunitsof{in}\prntlen{\textwidth}
 	This information is an input for \verb*|ffsp|: a Matlab function written to nicely format figures. 
-	For instance, to produce \reffig{fig:math-stuff} we added \verb*|ffsp(gcf,gca,17.5875,[1,2])| to both source codes \ref{code:fig2a}-\ref{code:fig2b}.
-	In \refsec{sec:discussion}, we explain how \verb*|ffsp| works.
+	For instance, to produce \reffig{fig:math-stuff} we added \verb*|ffsp(gcf,gca,17.5875,22.93674,1,2)| to both source codes \ref{code:fig2a}-\ref{code:fig2b}.
+	In \refapp{sec:ffsp}, we explain how \verb*|ffsp| works.
 	
 	% https://latex-tutorial.com/subfigure-latex/ to know more about the SUBFIGURE environment
 	\begin{figure}[H]

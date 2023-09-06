@@ -1,6 +1,6 @@
 % main.tex  
-% file with the preamble and the document structure
-% paper-draft-tex/templates
+% Preamble and document structure
+% Stephan Gahima/paper-draft-tex
 
 % ----------------------------------------------------------
 %                        PREAMBLE
@@ -67,9 +67,9 @@
 
 % Subfigure size
 \newcommand{\onefig}{0.9}
-\newcommand{\twofig}{0.425}
-\newcommand{\threefig}{0.285}
-\newcommand{\fourfig}{0.2125}
+\newcommand{\twofig}{0.45}%{0.425}
+\newcommand{\threefig}{0.3}%{0.285}
+\newcommand{\fourfig}{0.225}%{0.2125}
 
 % Include source code
 %\usepackage{listings}
@@ -103,11 +103,11 @@
 \newcommand{\reffig}[1]{Figure~\ref{#1}}
 \newcommand{\refsec}[1]{Section~\ref{#1}}
 \newcommand{\reftab}[1]{Table~\ref{#1}}
+\newcommand{\refapp}[1]{Appendix~\ref{#1}}
 
 % ----------------------------------------------------------
 %                       END OF PREAMBLE
 % ----------------------------------------------------------
-
 
 % Capitalize your title at https://capitalizemytitle.com/
 \title{A Template for Your Manuscript Draft} % APA style
@@ -119,7 +119,7 @@
 	\input{src/abstract}
 	
 	% Add your keywords here
-	\keywords{LaTeX, Template, Paper, Drafting}
+	\keywords{LaTeX, Template, Paper, Drafting, Matlab}
 	
 	\input{src/introduction}
 	
@@ -129,13 +129,18 @@
 
 	\input{src/discussion}
 
-	\bibliographystyle{plain}
-	\bibliography{src/bibliography}
+	\appendix
+	
+	\input{src/appendix/ffsp}
 	
 	\clearpage
 	
 	\listoffigures
 	\listoftables
 	\lstlistoflistings
+	
+	\newpage
+	\bibliographystyle{plain}
+	\bibliography{src/bibliography}
 	
 \end{document}

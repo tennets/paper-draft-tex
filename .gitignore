@@ -1,6 +1,6 @@
 TODO.md
-**/*.pdf
-**/*.eps
+#**/*.pdf
+#**/*.eps
 sources.txt 
 
 # General (MacOS)

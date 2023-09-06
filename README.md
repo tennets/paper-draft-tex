@@ -6,7 +6,7 @@ It helped me structure my ideas and results to share them effectively with my su
 
 The source codes in [latex-template](./latex-template) are edited with [TeXstudio](https://www.texstudio.org/), which compiles them to produce [main.pdf](./latex-template/main.pdf). The [function](./matlab/ffsp.m) to format the figures is written in Matlab. This work is under the [MIT License](LICENSE) and adapts [these tips](https://github.com/Wookai/paper-tips-and-tricks). 
 
-## Table of Contents
+### Table of Contents
 - [How *template* is structured?](#how-template-is-structured)
 - [Typesetting](#typesetting)
 - [Math notation](#math-notation)
@@ -33,7 +33,6 @@ The source codes in [latex-template](./latex-template) are edited with [TeXstudi
 |-- fig/
 |    |-- nice-cat.jpg
 |    |-- gscatter.eps
-|    |-- tansin.pdf
 |    |-- spy.pdf
 ```
 

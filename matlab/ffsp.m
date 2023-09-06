@@ -95,7 +95,7 @@ function ffsp(f, ax, LATEXW, LATEXH, NROWS, NCOLS, varargin)
 CURRENT_VERSION = 1.0;
 VERSION_FORMAT  = "%.1f";
 % Use CHAR to display nicely on the command window
-RELEASE_DATE    = char(datetime("today", "Format", "d-MM-y"));
+RELEASE_DATE    = '6-09-2023'; %char(datetime("today", "Format", "d-MM-y"));
 % -------------------------------------------------------------------------
 
 % ----------------- DEFAULT VALUES AND SUPPORTED OPTS ---------------------
